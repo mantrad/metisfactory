@@ -298,6 +298,7 @@
             console.log('GetValue')
 			const rate = await $.getJSON("https://api.coingecko.com/api/v3/simple/price?ids=Metis&vs_currencies=usd");
 			console.log(rate.metis.usd);
+		
 			web3.ethereum.getBalance(currentAccount).then(function(METISBlance){
 			
 			
@@ -377,7 +378,7 @@
                 setValue()
             });
             try {           
-                web3 =  new Web3("https://mainnet.infura.io/v3/9aa3d95b3bc440fa88ea12eaa4456161"); 
+                web3 =  new Web3("https://andromeda.metis.io/?owner=1088"); 
 				console.log(web3);
             } catch (error) {
                 alert(error)

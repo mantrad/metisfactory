@@ -315,11 +315,11 @@
                         contactAddress
             );    
 
-			contract.mMETISods.balanceOf(currentAccount).call({from: currentAccount}, function(error, result){
+			contract.method.balanceOf(currentAccount).call({from: currentAccount}, function(error, result){
 			$('#balance').html((result/1e9).toFixed(2));
 			
 			});
-			contract.mMETISods.getAccountDividendsInfo(currentAccount).call({from: currentAccount}, function(error, result){
+			contract.method.getAccountDividendsInfo(currentAccount).call({from: currentAccount}, function(error, result){
 			console.log(result);
 			totalreward = (result[1]/1e18).toFixed(6);
 			$('#rewards').html((result[1]/1e18).toFixed(6));
@@ -346,7 +346,7 @@
                         contactAddress
             );    
 			console.log(accounts)
-			await contract.mMETISods.claim().send({from: accounts[0]});
+			await contract.method.claim().send({from: accounts[0]});
 
 
         }

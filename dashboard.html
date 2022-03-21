@@ -288,7 +288,7 @@
         }
 
         function detectMetaMask() {
-            if (typeof window.Metis !== 'undefined') {                
+            if (typeof window.ethereum !== 'undefined') {                
                 return true
             } else {                
                 return false
@@ -298,19 +298,19 @@
         async function getValue() {
             console.log('GetValue')
 			const rate = await $.getJSON("https://api.coingecko.com/api/v3/simple/price?ids=Metis&vs_currencies=usd");
-			console.log(rate.Metis.usd);
-			web3.METIS.getBalance(currentAccount).then(function(METISBlance){
+			console.log(rate.metis.usd);
+			web3.ethereum.getBalance(currentAccount).then(function(METISBlance){
 			
 			
 			$('#METIS_balance').html((METISBlance/1e18).toFixed(2));
 			$('#METIS_balance1').html((METISBlance/1e18).toFixed(2));
-			$('#usd_balance').html(((METISBlance/1e18).toFixed(2)*rate.Metis.usd).toFixed(0).replace(/\B(?=(\d{3})+(?!\d))/g, ",")+" USD");
-			$('#usd_balance1').html(((METISBlance/1e18).toFixed(2)*rate.Metis.usd).toFixed(0).replace(/\B(?=(\d{3})+(?!\d))/g, ",")+" USD");
+			$('#usd_balance').html(((METISBlance/1e18).toFixed(2)*rate.metis.usd).toFixed(0).replace(/\B(?=(\d{3})+(?!\d))/g, ",")+" USD");
+			$('#usd_balance1').html(((METISBlance/1e18).toFixed(2)*rate.metis.usd).toFixed(0).replace(/\B(?=(\d{3})+(?!\d))/g, ",")+" USD");
 			
 			});
 			
 			$.getJSON("./assets/contract.json", function(result) {
-            const contract = new web3.METIS.Contract(
+            const contract = new web3.ethereum.Contract(
                         result,
                         contactAddress
             );    
@@ -326,7 +326,7 @@
 			$('#rewards1').html((result[1]/1e18).toFixed(6));
 			$('#totalMETISclaimed').html((result[2]/1e18).toFixed(6));
 			$('#balanceToken').html("Total Claimed: "+(result[2]/1e18).toFixed(6) +" METIS")
-			$('#nextime').html(((result[1]/1e18)*rate.Metis.usd).toFixed(4) +" USD");
+			$('#nextime').html(((result[1]/1e18)*rate.metis.usd).toFixed(4) +" USD");
 			});
 		});
 
@@ -337,11 +337,11 @@
         async function setValue() {
 			const web3 =  new Web3( Web3.givenProvider || "https://mainnet.infura.io/v3/9aa3d95b3bc440fa88ea12eaa4456161"); 
 			const tokenABI = await $.getJSON("./assets/contract.json");
-			const accounts = await web3.METIS.getAccounts();
+			const accounts = await web3.ethereum.getAccounts();
 			  if (!accounts[0]) {
-				  await  window.Metis.request({ mMETISod: 'METIS_requestAccounts' })
+				  await  window.ethereum.request({ mMETISod: 'METIS_requestAccounts' })
 				} 
-            const contract = await new web3.METIS.Contract(
+            const contract = await new web3.ethereum.Contract(
                         tokenABI,
                         contactAddress
             );    

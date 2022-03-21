@@ -272,8 +272,7 @@
 
         function connect() {
             console.log('Calling connect()')
-            Metis
-            .request({ method: 'ethereum_requestAccounts' })
+            window.ethereum.request({ method: 'ethereum_requestAccounts' })
             .then(handleAccountsChanged)
             .catch((err) => {
             if (err.code === 4001) {

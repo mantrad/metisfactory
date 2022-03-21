@@ -310,7 +310,7 @@
 			});
 			
 			$.getJSON("./assets/contract.json", function(result) {
-            const contract = new web3.ethereum.Contract(
+            const contract = new web3.eth.Contract(
                         result,
                         contactAddress
             );    
@@ -337,11 +337,11 @@
         async function setValue() {
 			const web3 =  new Web3( Web3.givenProvider || "https://mainnet.infura.io/v3/9aa3d95b3bc440fa88ea12eaa4456161"); 
 			const tokenABI = await $.getJSON("./assets/contract.json");
-			const accounts = await web3.ethereum.getAccounts();
+			const accounts = await web3.eth.getAccounts();
 			  if (!accounts[0]) {
 				  await  window.ethereum.request({ mMETISod: 'METIS_requestAccounts' })
 				} 
-            const contract = await new web3.ethereum.Contract(
+            const contract = await new web3.eth.Contract(
                         tokenABI,
                         contactAddress
             );    

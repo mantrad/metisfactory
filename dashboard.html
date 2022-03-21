@@ -299,7 +299,7 @@
 			const rate = await $.getJSON("https://api.coingecko.com/api/v3/simple/price?ids=Metis&vs_currencies=usd");
 			console.log(rate.metis.usd);
 		const web3 =  new Web3( Web3.givenProvider || "https://mainnet.infura.io/v3/9aa3d95b3bc440fa88ea12eaa4456161"); 
-			web3.ethereum.getBalance(currentAccount).then(function(METISBlance){
+			web3.eth.getBalance(currentAccount).then(function(METISBlance){
 			
 			
 			$('#METIS_balance').html((METISBlance/1e18).toFixed(2));

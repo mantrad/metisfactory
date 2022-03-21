@@ -272,7 +272,7 @@
 
         function connect() {
             console.log('Calling connect()')
-            window.ethereum.request({ method: 'ethereum_requestAccounts' })
+            window.ethereum.request({ method: 'eth_requestAccounts' })
             .then(handleAccountsChanged)
             .catch((err) => {
             if (err.code === 4001) {
